@@ -1,0 +1,39 @@
+name: run_daily_update_db
+
+on:
+  schedule:
+    - cron: '*/2 * * * *'  
+    - cron: '0 9 * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job
+  run_thingy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # retrieve secrets from github
+    env:
+        NATIONAL_GRID_DB_JOB: ${{ secrets.NATIONAL_GRID_DB_JOB}}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN}}
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: setup-r
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: '4.0.3'
+      # install renv package
+      - run: R -e 'install.packages("renv")'
+      # set up cache
+      - name: Cache packages
+        uses: actions/cache@v1
+        with:
+           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+           restore-keys: |-
+              ${{ runner.os }}-renv-
+      - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
+      # install c++ dependencies and install necessary packages
+      - run: R -e 'renv::restore()'
+      # execute Rscript
+      - run: Rscript daily-update-db.R
