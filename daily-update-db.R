@@ -1,5 +1,4 @@
 ## connect to ADO DB
-# remotes::install_github("KKulma/intensegRid")
 library(DBI)
 library(keyring)
 library(intensegRid)
@@ -26,14 +25,17 @@ con <- DBI::dbConnect(
   Port      = 1433
 )
 
-## national CI
+# db data check
 log_info("checking if the data alredy exists in the db")
-start <- today() - days(1)
-end <- start
 
 res <-
   dbGetQuery(con,
              "select MAX([to]) as max_to FROM national_ci_data")
+
+## national CI
+start <- today() - days(1)
+end <- start
+
 
 if (!all(as_date(res$max_to) == start)) {
   log_info("pull data from the API")
