@@ -29,7 +29,8 @@ jobs:
                    "intensegRid",
                    "dplyr",
                    "lubridate",
-                   "logger"))'
+                   "httr",
+                   "logger"), dependencies = TRUE)'
       # set up cache
       - name: Install packages
         uses: actions/cache@v1
