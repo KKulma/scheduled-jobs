@@ -1,18 +1,9 @@
 ## connect to ADO DB
 library(DBI)
-library(keyring)
 library(intensegRid)
 library(dplyr)
 library(lubridate)
 library(logger)
-
-### secure db credentials
-## checkout https://db.rstudio.com/best-practices/managing-credentials/ for details
-# keyring::key_set(service = "national-grid-data",
-#                  username = "national-grid-shiny")
-
-log_info("calling credentials")
-myusername <- keyring::key_list("national-grid-data")[1, 2]
 
 log_info("connecting ot db")
 con <- DBI::dbConnect(
@@ -20,8 +11,8 @@ con <- DBI::dbConnect(
   Driver    = "SQL Server",
   Server    = "national-grid-server.database.windows.net",
   Database  = "naitonal-grid-data",
-  UID       = myusername,
-  PWD       = keyring::key_get("national-grid-data", myusername),
+  UID       = Sys.getenv("UID"),
+  PWD       = Sys.getenv("PWD"),
   Port      = 1433
 )
 
