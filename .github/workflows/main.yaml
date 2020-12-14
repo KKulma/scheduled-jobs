@@ -2,7 +2,7 @@ name: run_daily_update_db
 
 on:
   schedule:
-#    - cron: '* * * * *'  
+    - cron: '* * * * *'  
     - cron: '0 9 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
