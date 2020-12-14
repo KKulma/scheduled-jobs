@@ -2,13 +2,13 @@ name: run_daily_update_db
 
 on:
   schedule:
-    - cron: '* * * * *'  
+#    - cron: '* * * * *'  
     - cron: '0 9 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job
-  run_thingy:
+  run_db_schedule:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # retrieve secrets from github
