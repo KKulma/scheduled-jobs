@@ -24,15 +24,9 @@ jobs:
         with:
           r-version: '4.0.3'
       # install renv package
-      - run: R -e 'install.packages(c("DBI",
-                   "keyring",
-                   "intensegRid",
-                   "dplyr",
-                   "lubridate",
-                   "httr",
-                   "logger"), dependencies = TRUE)'
+      - run: R -e 'install.packages("renv")'
       # set up cache
-      - name: Install packages
+      - name: Cache packages
         uses: actions/cache@v1
         with:
            key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
@@ -40,6 +34,6 @@ jobs:
               ${{ runner.os }}-renv-
       - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
       # install c++ dependencies and install necessary packages
-      #- run: R -e 'renv::restore()'
+      - run: R -e 'renv::restore()'
       # execute Rscript
       - run: Rscript daily-update-db.R
