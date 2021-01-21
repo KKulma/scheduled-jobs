@@ -7,9 +7,6 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
-    env: 
-      PWD: ${{ secrets.PWD}}
-      UID: ${{ secrets.UID}}
     steps:
     -
       name: Checkout
@@ -35,3 +32,6 @@ jobs:
         file: ./Dockerfile
         push: false
         tags: kasiatemp/ng-update:latest
+      env: 
+        PWD: ${{ secrets.PWD}}
+        UID: ${{ secrets.UID}}
