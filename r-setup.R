@@ -1,0 +1,6 @@
+install.packages("DBI")
+install.packages("odbc")
+install.packages("intensegRid")
+install.packages("dplyr")
+install.packages("lubridate")
+install.packages("logger")
