@@ -7,6 +7,9 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+        PWD: ${{ secrets.PWD}}
+        UID: ${{ secrets.UID}}
     steps:
     -
       name: Checkout
@@ -25,9 +28,9 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     -
       name: Print env vars
-      env:
-        PWD: ${{ secrets.PWD}}
-        UID: ${{ secrets.UID}}
+      with:
+        PWD: ${{ env.PWD}}
+        UID: ${{ env.UID}}
       run: |
         echo $PWD $UID
     # -
