@@ -6,7 +6,12 @@ jobs:
     runs-on: ubuntu-18.04
     container:
      image: kasiatemp/update-ng:latest
-    env:
-        NATIONAL_GRID_DB_JOB: ${{ secrets.NATIONAL_GRID_DB_JOB}}
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN}}
+    steps:
+      - name: checkout_repo
+        uses: actions/checkout@v2
+        with: 
+          ref: 'master'
+        env:
+          NATIONAL_GRID_DB_JOB: ${{ secrets.NATIONAL_GRID_DB_JOB}}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN}}
       
