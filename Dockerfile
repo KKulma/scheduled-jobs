@@ -16,7 +16,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/*
 
-COPY .Renviron .Renviron
+#COPY .Renviron .Renviron
 COPY r-setup.R r-setup.R
 COPY daily-update-db.R daily-update-db.R
 
