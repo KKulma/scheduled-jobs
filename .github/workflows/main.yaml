@@ -34,4 +34,4 @@ jobs:
         context: ./
         file: ./Dockerfile
         push: false
-        tags: kasiatemp/ng-update:latest
+        tags: kasiatemp/ng-update:noenv
