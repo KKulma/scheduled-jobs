@@ -6,13 +6,14 @@ on:
 jobs:
   run_container:
     runs-on: ubuntu-latest
-    steps:
-      name: run container 
-      run:
-        using: 'docker'
-        image: 'Dockerfile'
-        env:
+    container:
+      image: kasiatemp/ng-update:mini
+      env:
           MYPASS: ${{ secrets.PWD}}
+    steps:
+         - name: Run schedule
+           run: |
+             Rscript daily-update-db.R
           
 # # action.yml
 # name: 'Hello World'

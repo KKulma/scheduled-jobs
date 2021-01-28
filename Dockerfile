@@ -32,5 +32,5 @@ COPY daily-update-db.R .
 #RUN Rscript r-setup.R
 
 # Copy and execute R script
-CMD R -e "source('daily-update-db.R')"
+#CMD R -e "source('daily-update-db.R')"
 
