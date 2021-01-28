@@ -19,13 +19,13 @@ con <- DBI::dbConnect(
 # db data check
 logger::log_info("checking if the data alredy exists in the db")
 
-res <-
-  DBI::dbGetQuery(con,
-             "select MAX([to]) as max_to FROM national_ci_data")
-
-all_dates <-
-  DBI::dbGetQuery(con,
-             "select DISTINCT [to] as unique_to FROM national_ci_data")
+# res <-
+#   DBI::dbGetQuery(con,
+#              "select MAX([to]) as max_to FROM national_ci_data")
+# 
+# all_dates <-
+#   DBI::dbGetQuery(con,
+#              "select DISTINCT [to] as unique_to FROM national_ci_data")
 
 #national CI
 start <- lubridate::today() - lubridate::days(1)
@@ -40,6 +40,8 @@ if (!all(lubridate::as_date(res$max_to) == start)) {
   if (!is.null(intense_data)) {
     DBI::dbWriteTable(con, "national_ci_data", intense_data, append = TRUE)
   }
+} else {
+  logger::log_info("data already exists on DB")
 }
 
 logger::log_info("disconnect from the db")
