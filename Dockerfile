@@ -11,7 +11,7 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 # Some of these packages such as apt-utils, apt-transport-https or gnupg2 are required so that the R repo can be added and R installed
 # Note that the R repo is specific for the Linux distro (Ubuntu 18.04 aka bionic in this case)
 # Other packages such as curl will be used later to install ODBC
-RUN apt-get update -y && apt-get install -y build-essential curl libssl1.0.0 libssl-dev gnupg2 software-properties-common dirmngr apt-transport-https apt-utils lsb-release ca-certificates
+RUN apt-get update -y && apt-get install -y build-essential curl libssl1.0.0 libssl-dev gnupg2 software-properties-common dirmngr apt-transport-https apt-utils lsb-release ca-certificates libcurl4-openssl-dev
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
 RUN apt-get update -y && apt-get install -y r-base
@@ -26,11 +26,4 @@ RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev mssql-tools
 
 # copy R scripts and install dependencies 
 RUN R -e "install.packages(c('DBI','odbc','intensegRid','dplyr','lubridate','logger'))"
-#COPY r-setup.R .
 COPY daily-update-db.R /home/schedule/daily-update-db.R
-
-#RUN Rscript r-setup.R
-
-# Copy and execute R script
-#CMD R -e "source('daily-update-db.R')"
-
