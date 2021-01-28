@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       name: run container 
-      runs:
+      run:
         using: 'docker'
         image: 'Dockerfile'
         env:
