@@ -27,7 +27,7 @@ RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev mssql-tools
 # copy R scripts and install dependencies 
 RUN R -e "install.packages(c('DBI','odbc','intensegRid','dplyr','lubridate','logger'))"
 #COPY r-setup.R .
-COPY daily-update-db.R .
+COPY daily-update-db.R /home/schedule/daily-update-db.R
 
 #RUN Rscript r-setup.R
 

@@ -13,7 +13,7 @@ jobs:
     steps:
          - name: Run schedule
            run: |
-             Rscript daily-update-db.R
+             Rscript /home/schedule/daily-update-db.R
           
 # # action.yml
 # name: 'Hello World'
