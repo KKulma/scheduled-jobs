@@ -19,9 +19,9 @@ con <- DBI::dbConnect(
 # db data check
 logger::log_info("checking if the data alredy exists in the db")
 
-# res <-
-#   DBI::dbGetQuery(con,
-#              "select MAX([to]) as max_to FROM national_ci_data")
+res <-
+  DBI::dbGetQuery(con,
+             "select MAX([to]) as max_to FROM national_ci_data")
 # 
 # all_dates <-
 #   DBI::dbGetQuery(con,
