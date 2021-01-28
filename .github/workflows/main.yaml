@@ -5,10 +5,13 @@ on:
     branches: master
 jobs:
   run_container:
-    container:
-      image: kasiatemp/ng-update:latest
-      env:
-        MYPASS: ${{ secrets.PWD}}
+    runs-on: ubuntu-latest
+    steps:
+      name: run container 
+      container:
+        image: kasiatemp/ng-update:latest
+        env:
+          MYPASS: ${{ secrets.PWD}}
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
