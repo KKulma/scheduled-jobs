@@ -8,10 +8,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       name: run container 
-      container:
-        image: kasiatemp/ng-update:latest
+      runs:
+        using: 'docker'
+        image: 'Dockerfile'
         env:
           MYPASS: ${{ secrets.PWD}}
+          
+# # action.yml
+# name: 'Hello World'
+# description: 'Greet someone and record the time'
+# inputs:
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
+# outputs:
+#   time: # id of output
+#     description: 'The time we greeted you'
+# runs:
+#   using: 'docker'
+#   image: 'Dockerfile'
+#   args:
+#     - ${{ inputs.who-to-greet }}
 # jobs:
 #   main:
 #     runs-on: ubuntu-latest
