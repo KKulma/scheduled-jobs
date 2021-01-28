@@ -1,9 +1,8 @@
 name: update carbon intensity data
 
 on:
-  push:
-  #schedule:  
-    #- cron:  '0 */1 * * *'
+  schedule:  
+    - cron:  '0 6 * * *'
     branches: master
 jobs:
   run_container:
