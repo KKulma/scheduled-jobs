@@ -3,7 +3,6 @@ name: update carbon intensity data
 on:
   schedule:  
     - cron:  '0 6 * * *'
-    branches: master
 jobs:
   run_container:
     runs-on: ubuntu-latest
