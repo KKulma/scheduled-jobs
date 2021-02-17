@@ -1,7 +1,7 @@
 ## connect to ADO DB
 # library(DBI)
 # library(intensegRid)
-# library(dplyr)
+ library(dplyr)
 # library(lubridate)
 # library(logger)
 
